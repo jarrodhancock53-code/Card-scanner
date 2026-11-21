@@ -1,0 +1,25 @@
+[
+ {
+  "id": "sv1",
+  "name": "Scarlet & Violet",
+  "cards": 6,
+  "printedTotal": 198,
+  "priced": 5,
+  "printings": [
+   "holo",
+   "normal",
+   "reverseHolo"
+  ]
+ },
+ {
+  "id": "sv2",
+  "name": "Paldea Evolved",
+  "cards": 1,
+  "printedTotal": 193,
+  "priced": 1,
+  "printings": [
+   "normal",
+   "reverseHolo"
+  ]
+ }
+]

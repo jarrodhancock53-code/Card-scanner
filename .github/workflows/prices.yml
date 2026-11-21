@@ -1,0 +1,26 @@
+name: Daily price sync
+on:
+  schedule:
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Pull catalog and prices for all Scarlet & Violet sets
+        env:
+          POKEMONTCG_API_KEY: ${{ secrets.POKEMONTCG_API_KEY }}
+        run: python tools/sync.py --out data
+      - name: Commit if changed
+        run: |
+          git config user.name "price-sync"
+          git config user.email "price-sync@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || (git commit -m "Daily price sync" && git push)
